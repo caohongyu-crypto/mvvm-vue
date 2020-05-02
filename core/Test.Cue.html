@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .blue{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="test">
+        你好，{{content}}{{decription}}<br>
+        <span>{{decription}}</span><br>
+        <input type="text" v-model="obj.x" v-on:keydown="func">{{obj.x}}
+        <ui>
+            <li v-for="(key) in list">
+                姓名：{{key.name}} 年龄：{{key.age}}
+            </li>
+        </ui>
+        <img v-bind:src="imgUrl" alt="">
+        <span v-bind:class="haha">这是测试文字</span>
+        <span v-bind:class="{red: obj.x > 2 + 1, blue: obj.x < 2}">这是测试文字</span>
+    </div>
+
+    <script type="module">
+        import Cue from './index.js'
+        window.test = new Cue({
+            el:"test",
+            data:{
+                content:'这是内容',
+                decription:'这是描述内容',
+                obj:{
+                    x:1,
+                    y:2
+                },
+                list:[{name:'123', age:20},{name:'456', age:22},{name:'456', age:23}],
+                imgUrl:'./btn.png',
+                haha:'red'
+            },
+            methods:{
+                func:function (){
+                    console.log(this)
+                }
+            },
+            created:function(){
+                console.log('创建完成');
+            }
+        })
+    </script>
+</body>
+</html>
